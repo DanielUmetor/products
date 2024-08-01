@@ -1,18 +1,19 @@
 // This is the main entry point for our Node.js application
 const express = require('express');
+const path = require('path');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 // Serve static files
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Route handlers
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(path.join(__dirname, 'static', 'index.html'));
 });
 
 app.get('/about', (req, res) => {
-    res.sendFile(__dirname + '/about.html');
+    res.sendFile(path.join(__dirname, 'static', 'about.html'));
 });
 
 // Start server
